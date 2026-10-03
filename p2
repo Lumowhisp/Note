@@ -1,0 +1,44 @@
+Courses in an University
+
+💡 Approach
+
+For every course i, A[i] tells how many prerequisites it needs.
+
+The minimum number of courses that must be prerequisites for some course is:
+
+max(A[i])
+
+So the maximum number of courses that are not prerequisites is:
+
+Answer = N - max(A[i])
+
+🔑 Key Observation
+
+We don’t need to construct the prerequisite graph.
+
+Just find the maximum value in A.
+
+⏱️ Complexity
+
+* Time: O(N)
+* Space: O(N)
+
+💻 Code
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> A(N);
+        for (int i = 0; i < N; i++) {
+            cin >> A[i];
+        }
+        int maxPrereq = *max_element(A.begin(), A.end());
+        cout << N - maxPrereq << '\n';
+    }
+    return 0;
+}
