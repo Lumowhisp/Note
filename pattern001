@@ -1,0 +1,34 @@
+Frequency / Counting Array Pattern
+
+Core Idea
+
+Count what you have → subtract what you need → negative means impossible.
+
+int cnt[26] = {};
+for(char c : a) cnt[c - 'a']++;   // available
+for(char c : s) cnt[c - 'a']--;   // required
+for(int x : cnt)
+    if(x < 0) return NO;
+
+Recognition Trigger
+
+Use this when you see:
+
+* Anagrams
+* Construct a string
+* Available characters
+* Character frequency
+* “Can we make X from Y?”
+
+Formula
+
+Available − Required ≥ 0 → Possible
+
+Complexity
+
+* Time: O(total characters)
+* Space: O(26) → O(1)
+
+Memory Trick
+
++ Have → − Need → Negative = NO
