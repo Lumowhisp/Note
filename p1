@@ -1,0 +1,33 @@
+REMELEM — Greedy / Min-Max Observation
+
+Core Idea
+
+Only the minimum element needs to pair with the maximum.
+
+If:
+min + max <= K → YES
+else → NO
+
+Recognition Trigger
+
+When an operation allows removing an element if:
+
+Ai + Aj <= K
+
+Think: Can the smallest element pair with the largest?
+
+Pattern
+
+min_element + max_element <= K
+
+Special case:
+N == 1 → YES
+
+Complexity
+
+Time: O(N)
+Space: O(1)
+
+Memory Trick
+
+Smallest + Largest ≤ K → keep deleting the largest → YES.
