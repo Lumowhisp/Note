@@ -1,0 +1,47 @@
+Binary Search on Answer Pattern
+
+Core Idea
+
+When the answer lies in a numeric range and a condition is monotonic, use Binary Search.
+
+Pattern
+
+long long low = 0, high = n;
+long long ans = -1;
+while (low <= high) {
+    long long mid = low + (high - low) / 2;
+    if (condition(mid)) {
+        ans = mid;       // valid → try bigger
+        low = mid + 1;
+    } else {
+        high = mid - 1;  // invalid → go smaller
+    }
+}
+
+Recognition Trigger
+
+Look for:
+
+* Maximum/minimum value satisfying a condition
+* largest k such that...
+* smallest k such that...
+* Condition changes False → True or True → False
+* Search space is numeric
+
+This Problem
+
+Find the largest mid satisfying:
+
+mid * (mid + 1) / 2 <= n
+
+So:
+Valid → store answer + move right.
+
+Complexity
+
+* Time: O(log n)
+* Space: O(1)
+
+Memory Trick
+
+Monotonic condition → Binary Search → Valid? Save + move toward answer.
