@@ -1,0 +1,43 @@
+Lower Bound + Parity Pattern
+
+Core Idea
+
+Sort → find first element >= x → use remaining count.
+
+int low = 0, high = n - 1, ans = n;
+while (low <= high) {
+    int mid = low + (high - low) / 2;
+    if (a[mid] >= x) {
+        ans = mid;
+        high = mid - 1;   // first occurrence
+    } else {
+        low = mid + 1;
+    }
+}
+
+Recognition Trigger
+
+* Array can be sorted
+* Need first element >= x
+* Multiple queries
+* Result depends on elements after that position
+
+Pattern
+
+res = lower_bound(x)
+
+* a[res] == x → special case
+* Otherwise → count = n - res
+* count % 2 == 0 → POSITIVE
+* count % 2 != 0 → NEGATIVE
+
+Complexity
+
+Sort: O(n log n)
+Each query: O(log n)
+Total: O(n log n + q log n)
+Space: O(1) extra
+
+Memory Trick
+
+Sort → Lower Bound → Check exact → Count remaining → Parity decides.
