@@ -1,0 +1,91 @@
+Alternating Subarray — DP Pattern
+
+🧠 Core Idea
+
+For every index i, find the longest alternating subarray starting at i.
+
+Define:
+
+dp[i] = longest alternating subarray starting from index i
+
+⸻
+
+🔑 Recurrence
+
+Check the current element and its adjacent element:
+
+different signs:
+    dp[i] = 1 + dp[i+1]
+same signs:
+    dp[i] = 1
+
+Base Case:
+
+i == n-1
+dp[i] = 1
+
+Because a single element is always an alternating subarray.
+
+⸻
+
+🔍 Sign Check
+
+Two numbers have different signs if:
+
+(nums[i] < 0 && nums[i+1] >= 0) ||
+(nums[i] >= 0 && nums[i+1] < 0)
+
+⸻
+
+📌 Recognition Trigger
+
+Use this pattern when:
+
+* Answer is required for every index
+* Answer depends on the next index
+* A valid sequence can be extended if the next element satisfies a condition
+* You need the longest valid subarray starting from each position
+
+Think:
+
+“Answer at i depends on answer at i+1 → 1D DP.”
+
+⸻
+
+🔄 Recursive + Memoization
+
+helper(i, i+1)
+if signs are different:
+    return 1 + helper(i+1, i+2)
+else:
+    return 1
+
+dp[i] stores the already calculated answer for index i.
+
+⸻
+
+⏱ Complexity
+
+Time  : O(N)
+Space : O(N)  → DP array
+         O(N)  → Recursion stack
+
+Overall auxiliary space: O(N).
+
+⸻
+
+⚡ Better Iterative Pattern
+
+Since dependency is only on i+1, recursion isn’t necessary:
+
+ans[n-1] = 1;
+for (int i = n-2; i >= 0; i--) {
+    if (differentSign(A[i], A[i+1]))
+        ans[i] = ans[i+1] + 1;
+    else
+        ans[i] = 1;
+}
+
+One-liner Pattern
+
+If dp[i] depends only on dp[i+1], traverse from RIGHT → LEFT.
